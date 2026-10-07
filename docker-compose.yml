@@ -1,0 +1,14 @@
+services:
+  web:
+    image: YOUR_DOCKERHUB_USER/php-app:${IMAGE_TAG:-latest}
+    container_name: php-app
+    ports:
+      - "8081:80"
+    environment:
+      - APP_VERSION=${IMAGE_TAG:-latest}
+    volumes:
+      - taskdata:/var/www/data   # tasks survive redeployments
+    restart: unless-stopped
+
+volumes:
+  taskdata:
